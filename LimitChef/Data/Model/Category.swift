@@ -11,8 +11,8 @@ struct CategoryResponse: Codable {
     var categories: [Category]
 }
 
-struct Category: Codable {
-    var idCategory: String
-    var strCategory: String
-    var strCategoryThumb: String
+struct Category: Codable, Hashable {
+    var idCategory: String = "1"
+    var strCategory: String = "Beef"
+    var strCategoryThumb: String = "https://www.themealdb.com/images/category/beef.png"
 }

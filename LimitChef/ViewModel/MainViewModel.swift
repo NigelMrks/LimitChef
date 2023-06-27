@@ -7,4 +7,9 @@
 
 import Foundation
 
-class MainViewModel: ObservableObject
+class MainViewModel: ObservableObject {
+    var recipeDummyList = [Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe()]
+    var categoryDummyList = [Category(),Category(),Category(),Category(),Category(),Category(),Category(),Category()]
+
+    
+}
