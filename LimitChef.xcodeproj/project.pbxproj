@@ -11,6 +11,7 @@
 		7E92CDDA2A499D9200427C61 /* ListThumbnailSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E92CDD92A499D9200427C61 /* ListThumbnailSmall.swift */; };
 		7E92CDDC2A49A0A400427C61 /* ListThumbnailMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E92CDDB2A49A0A400427C61 /* ListThumbnailMedium.swift */; };
 		7E92CDDE2A49C97A00427C61 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E92CDDD2A49C97A00427C61 /* HomeScreen.swift */; };
+		7E92CDE02A4C139300427C61 /* RecipeApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E92CDDF2A4C139300427C61 /* RecipeApiService.swift */; };
 		7E9F08DE2A443DFE0014B34D /* LimitChefApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F08DD2A443DFE0014B34D /* LimitChefApp.swift */; };
 		7E9F08E02A443DFE0014B34D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F08DF2A443DFE0014B34D /* ContentView.swift */; };
 		7E9F08E22A443DFF0014B34D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E9F08E12A443DFF0014B34D /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		7E92CDD92A499D9200427C61 /* ListThumbnailSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListThumbnailSmall.swift; sourceTree = "<group>"; };
 		7E92CDDB2A49A0A400427C61 /* ListThumbnailMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListThumbnailMedium.swift; sourceTree = "<group>"; };
 		7E92CDDD2A49C97A00427C61 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		7E92CDDF2A4C139300427C61 /* RecipeApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeApiService.swift; sourceTree = "<group>"; };
 		7E9F08DA2A443DFE0014B34D /* LimitChef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LimitChef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9F08DD2A443DFE0014B34D /* LimitChefApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitChefApp.swift; sourceTree = "<group>"; };
 		7E9F08DF2A443DFE0014B34D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		7E9F08EE2A458D810014B34D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7E92CDDF2A4C139300427C61 /* RecipeApiService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				7E9F08FC2A45D85A0014B34D /* Recipe.swift in Sources */,
 				7E92CDDC2A49A0A400427C61 /* ListThumbnailMedium.swift in Sources */,
 				7E9F08FE2A45DA610014B34D /* Category.swift in Sources */,
+				7E92CDE02A4C139300427C61 /* RecipeApiService.swift in Sources */,
 				7E9F090E2A497BF70014B34D /* HeaderView.swift in Sources */,
 				7E92CDDA2A499D9200427C61 /* ListThumbnailSmall.swift in Sources */,
 				7E92CDD62A49953900427C61 /* LimitChefColors.swift in Sources */,
