@@ -25,7 +25,6 @@ class DetailViewModel: ObservableObject {
     func fetchRecipe(ID : String){
         apiServer.fetchRecipeById(id: ID) { response in
             self.recipe = response
-            self.recipe.strInstructions.append("Test")
         }
     }
     
