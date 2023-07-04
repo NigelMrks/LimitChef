@@ -18,7 +18,7 @@ struct HomeScreen: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(vm.recipeDummyList, id: \.self) {recipe in
-                            ListThumbnailSmall(url: recipe.strMealtThumb, name: recipe.strMeal)
+                            ListThumbnailSmall(url: recipe.strMealThumb, name: recipe.strMeal)
                         }
                     }
                 }
@@ -36,7 +36,7 @@ struct HomeScreen: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(vm.recipeDummyList, id: \.self) {recipe in
-                            ListThumbnailSmall(url: recipe.strMealtThumb, name: recipe.strMeal)
+                            ListThumbnailSmall(url: recipe.strMealThumb, name: recipe.strMeal)
                         }
                     }
                 }

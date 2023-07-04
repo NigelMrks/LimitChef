@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var vm = MainViewModel()
+    @State var bool = true
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        RecipeDetailView(selectedRecipe: vm.fetchRecipeById(id: "52772") ?? Recipe())
     }
 }
 
