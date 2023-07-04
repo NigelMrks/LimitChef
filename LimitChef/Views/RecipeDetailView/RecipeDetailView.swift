@@ -8,35 +8,39 @@
 import SwiftUI
 
 struct RecipeDetailView: View {
-    var selectedRecipe: Recipe
-    var viewModel = MainViewModel()
+    var recID : String
+    @ObservedObject var detailViewModel = DetailViewModel()
+    
     var body: some View {
         VStack {
             ZStack {
-                AsyncImage(url: URL(string: selectedRecipe.strMealThumb))
+                AsyncImage(url: URL(string: detailViewModel.recipe.strMealThumb))
                 { image in image.resizable() } placeholder: { LimitChefColors.accents }
                     .frame(height: 200)
                     .scaledToFit()
-                HeaderView(headerText: selectedRecipe.strMeal)
+                HeaderView(headerText: detailViewModel.recipe.strMeal)
             }.edgesIgnoringSafeArea(.top)
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach( viewModel.getIngredientsAsList(recipe: selectedRecipe), id: \.self) {ingredient in
-                        ListThumbnailSmall(url: viewModel.getIngredientThumb(ingredient: ingredient), name: ingredient)
+                    ForEach( detailViewModel.getIngredientsAsList(), id: \.self) {ingredient in
+                        ListThumbnailSmall(url: detailViewModel.getIngredientThumb(ingredient: ingredient), name: ingredient)
                     }
                 }
             }
             HeaderView(headerText: "Instructions")
             ScrollView {
-                Text(selectedRecipe.strInstructions)
+                Text(detailViewModel.recipe.strInstructions)
                     .padding()
             }
+        }.onAppear{
+            print("APPEAR")
+            detailViewModel.fetchRecipe(ID: recID)
         }
     }
 }
 
 struct RecipeDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeDetailView(selectedRecipe: Recipe())
+        RecipeDetailView(recID: "52772")
     }
 }

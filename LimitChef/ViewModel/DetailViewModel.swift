@@ -1,30 +1,35 @@
 //
-//  MainViewModel.swift
+//  DetailViewModel.swift
 //  LimitChef
 //
-//  Created by Nigel Marks on 23.06.23.
+//  Created by Till Hemmerich on 04.07.23.
 //
 
 import Foundation
 
-class MainViewModel: ObservableObject {
+
+class DetailViewModel: ObservableObject {
     
-    //Dummy Variables for testing
-    var recipeDummyList = [Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe()]
-    var categoryDummyList = [Category(),Category(),Category(),Category(),Category(),Category(),Category(),Category()]
+  
     
     //Variables
-    @Published var recipeList = [Recipe]()
-    @Published var categoryList = [Recipe]()
+    @Published var recipe = Recipe(){
+        didSet{
+            print("hello")
+        }
+    }
     
     //Services etc
     var apiServer = RecipeApiService()
     
+    func fetchRecipe(ID : String){
+        apiServer.fetchRecipeById(id: ID) { response in
+            self.recipe = response
+            self.recipe.strInstructions.append("Test")
+        }
+    }
     
-    
-    //Functions
-    //General
-    func getIngredientsAsList(recipe: Recipe) -> [String]{
+    func getIngredientsAsList() -> [String]{
         var ingredients = [String]()
         func addToList(Ing: String?) {
             if (Ing != nil && Ing != "") {
@@ -59,6 +64,4 @@ class MainViewModel: ObservableObject {
         return "https://www.themealdb.com/images/ingredients/\(formattedString).png"
         
     }
-    
-
 }

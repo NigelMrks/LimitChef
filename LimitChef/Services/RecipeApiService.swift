@@ -16,7 +16,7 @@ class RecipeApiService: ObservableObject {
     let baseUrl: String = "https://www.themealdb.com/api/json/v1/"
     let apiKey = "1/"
     
-    func fetchRecipeById(id: String) -> Recipe? {
+    func fetchRecipeById(id: String,completion : @escaping (Recipe) -> Void){
         
         var recipeById: Recipe?
         
@@ -24,7 +24,7 @@ class RecipeApiService: ObservableObject {
         let urlExt = "lookup.php?i="
         guard let url = URL(string: "\(baseUrl)\(apiKey)\(urlExt)\(id)") else {
             print("Error forming URL")
-            return nil
+            return
         }
         
         //MARK: SCHRITT 2:  URL SESSION & DATA TASK ANLEGEN
@@ -41,6 +41,7 @@ class RecipeApiService: ObservableObject {
                 
                 DispatchQueue.main.async {
                     recipeById = recipeResponse.meals[0]
+                    completion(recipeResponse.meals[0])
                     print("APISERVICE")
                     print(recipeById)
                     
@@ -53,7 +54,6 @@ class RecipeApiService: ObservableObject {
         //MARK: SCHRITT 4: API CALL STARTEN
         task.resume()
         
-        return recipeById
     }
     
     func idWithAsync(id: String) async throws -> Recipe? {
