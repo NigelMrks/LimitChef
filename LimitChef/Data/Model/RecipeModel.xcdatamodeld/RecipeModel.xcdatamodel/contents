@@ -4,11 +4,11 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="thumbnail" optional="YES" attributeType="String"/>
-        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="recipes" inverseEntity="Ingredient"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient"/>
     </entity>
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="thumbnail" optional="YES" attributeType="String"/>
-        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Favorite" inverseName="ingredients" inverseEntity="Favorite"/>
     </entity>
 </model>

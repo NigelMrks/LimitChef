@@ -18,12 +18,19 @@ struct RecipeDetailView: View {
                 { image in image.resizable() } placeholder: { LimitChefColors.accents }
                     .frame(height: 200)
                     .scaledToFit()
-                HeaderView(headerText: detailViewModel.recipe.strMeal)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 15)
+                        .frame(width: 300, height: 50)
+                        .foregroundColor(LimitChefColors.primary)
+                    Text(detailViewModel.recipe.strMeal)
+                        .foregroundColor(LimitChefColors.accents)
+                        .fontWeight(.bold)
+                }
             }.edgesIgnoringSafeArea(.top)
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach( detailViewModel.getIngredientsAsList(), id: \.self) {ingredient in
-                        ListThumbnailSmall(url: detailViewModel.getIngredientThumb(ingredient: ingredient), name: ingredient)
+                    ForEach( Util.getIngredientsAsList(recipe: detailViewModel.recipe), id: \.self) {ingredient in
+                        ListThumbnailSmall(url: Util.getIngredientThumb(ingredient: ingredient), name: ingredient)
                     }
                 }
             }

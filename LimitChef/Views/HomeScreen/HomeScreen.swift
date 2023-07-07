@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeScreen: View {
-    @StateObject var vm: MainViewModel = MainViewModel()
+    @StateObject var homeViewModel: HomeViewModel = HomeViewModel()
     var body: some View {
         ZStack {
             Color(UIColor(LimitChefColors.secondary))
@@ -16,8 +16,8 @@ struct HomeScreen: View {
             VStack {
                 HeaderView(headerText: "Recommended for you")
                 ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(vm.recipeDummyList, id: \.self) {recipe in
+                    HStack(alignment: .top) {
+                        ForEach(homeViewModel.randomRecipes, id: \.self) {recipe in
                             ListThumbnailSmall(url: recipe.strMealThumb, name: recipe.strMeal)
                         }
                     }
@@ -26,7 +26,7 @@ struct HomeScreen: View {
                 HeaderView(headerText: "Categories")
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(vm.categoryDummyList, id: \.self) {category in
+                        ForEach(homeViewModel.categories, id: \.self) {category in
                             ListThumbnailSmall(url: category.strCategoryThumb, name: category.strCategory)
                         }
                     }
@@ -35,10 +35,15 @@ struct HomeScreen: View {
                 HeaderView(headerText: "Ingredients")
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(vm.recipeDummyList, id: \.self) {recipe in
-                            ListThumbnailSmall(url: recipe.strMealThumb, name: recipe.strMeal)
+                        ForEach(homeViewModel.ingredients, id: \.self) {ingredient in
+                            ListThumbnailSmall(url: Util.getIngredientThumb(ingredient: ingredient.strIngredient), name: ingredient.strIngredient)
                         }
                     }
+                }.onAppear{
+                    print("APPEAR")
+                    homeViewModel.getRandomRecipes()
+                    homeViewModel.getCategories()
+                    homeViewModel.getIngredients()
                 }
                 .padding(8)
             }
