@@ -11,7 +11,7 @@ struct ContentView: View {
     @StateObject var vm = MainViewModel()
     @State var bool = true
     var body: some View {
-        HomeScreen()
+        IngredientsScreen()
     }
 }
 

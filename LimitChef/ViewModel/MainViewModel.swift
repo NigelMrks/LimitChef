@@ -12,5 +12,5 @@ class MainViewModel: ObservableObject {
     //Dummy Variables for testing
     var recipeDummyList = [Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe(),Recipe()]
     var categoryDummyList = [Category(),Category(),Category(),Category(),Category(),Category(),Category(),Category()]
-
+    
 }
