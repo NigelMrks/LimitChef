@@ -13,8 +13,11 @@ struct IngredientsScreen: View {
     var body: some View {
         VStack {
             ZStack {
+                LimitChefColors.secondary
+                    .ignoresSafeArea(.all)
+                    .frame(height: 50)
                 RoundedRectangle(cornerRadius: 15)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 320, height: 50)
                     .foregroundColor(LimitChefColors.primary)
                 HStack {
                     if (!ingredientsViewModel.ingredientsAll.isEmpty) {
@@ -26,7 +29,7 @@ struct IngredientsScreen: View {
                         .onChange(of: ingredientsViewModel.selectedIngredient) {value in
                             print("\(value)")
                         }
-                        .frame(width: 180, alignment: .leading)
+                        .frame(width: 200, alignment: .leading)
                         .tint(LimitChefColors.accents)
                         .padding()
                     }
@@ -34,7 +37,7 @@ struct IngredientsScreen: View {
                         Text("Loading...")
                     }
                     Button{
-                        ingredientsViewModel.crud.addIngredient(ingredient: ingredientsViewModel.selectedIngredient)
+                        ingredientsViewModel.addIngredient(ingredient: ingredientsViewModel.selectedIngredient)
                     } label: {
                         Text("ADD")
                             .font(.title)
@@ -45,18 +48,34 @@ struct IngredientsScreen: View {
                 }
             }
             List {
-                ForEach($ingredientsViewModel.crud.ingredients) { $ingredient in
-                    HStack {
-                        Text(ingredient.name ?? "error")
-                    }
+                Section {
+                    Text("Ingredients")
+                        .bold()
+                        .listRowBackground(LimitChefColors.primary)
                 }
-                .onDelete(perform: ingredientsViewModel.crud.deleteIngredient)
-                
+                Section {
+                    ForEach($ingredientsViewModel.ingredients) { $ingredient in
+                        HStack {
+                            Text(ingredient.name ?? "error")
+                                .foregroundColor(LimitChefColors.accents)
+                        }
+                        .listRowBackground(LimitChefColors.primary)
+                    }
+                    .onDelete(perform: ingredientsViewModel.deleteIngredient)
+                }
+                Section {
+                    Text("Search")
+                        .bold()
+                        .listRowBackground(LimitChefColors.primary)
+                }
+                Section {
+                    
+                }
             }
-            
+            .background(LimitChefColors.secondary)
+            .scrollContentBackground(.hidden)
         }
-        
-        
+        .background(LimitChefColors.secondary)
     }
 }
 
