@@ -38,6 +38,14 @@ struct Util {
         return ingredients
     }
     
+    static func listAsString(list: [String]) -> String {
+        var string = ""
+        list.forEach { ingr in
+            string += "\(ingr), "
+        }
+        return String(string.dropLast(2))
+    }
+    
     static func getIngredientThumb(ingredient: String) -> String{
         let formattedString = ingredient.replacingOccurrences(of: " ", with: "%20")
         return "https://www.themealdb.com/images/ingredients/\(formattedString).png"

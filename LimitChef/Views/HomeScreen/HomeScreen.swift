@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeScreen: View {
     @StateObject var homeViewModel: HomeViewModel = HomeViewModel()
+    @StateObject var ingredientsViewModel: IngredientsViewModel = IngredientsViewModel()
     var body: some View {
         ZStack {
             Color(UIColor(LimitChefColors.secondary))
@@ -35,8 +36,8 @@ struct HomeScreen: View {
                 HeaderView(headerText: "Ingredients")
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(homeViewModel.ingredients, id: \.self) {ingredient in
-                            ListThumbnailSmall(url: Util.getIngredientThumb(ingredient: ingredient.strIngredient), name: ingredient.strIngredient)
+                        ForEach(ingredientsViewModel.ingredients, id: \.self) {ingredient in
+                            ListThumbnailSmall(url: ingredient.thumbnail ?? "error", name: ingredient.name ?? "error")
                         }
                     }
                 }.onAppear{

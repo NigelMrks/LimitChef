@@ -36,7 +36,7 @@ struct RecipeDetailView: View {
             }
             HeaderView(headerText: "Instructions")
             ScrollView {
-                Text(detailViewModel.recipe.strInstructions)
+                Text(detailViewModel.recipe.strInstructions ?? "No Instructions found..")
                     .padding()
             }
         }.onAppear{

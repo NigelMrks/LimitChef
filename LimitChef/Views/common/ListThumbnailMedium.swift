@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ListThumbnailMedium: View {
-    @State var url = "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg"
-    @State var name = "Teriyaki Chicken Casserole"
-    @State var ingredients = "Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient, Ingredient"
+    @State var url: String = "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg"
+    @State var name: String = "Teriyaki Chicken Casserole"
+    @State var ingredients: [String] = ["Ingredient", "Ingredient", "Ingredient", "Ingredient", "Ingredient", "Ingredient", "Ingredient", "Ingredient", "Ingredient", "Ingredient"]
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: url))
@@ -21,7 +21,7 @@ struct ListThumbnailMedium: View {
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .foregroundColor(LimitChefColors.accents)
-                Text(ingredients)
+                Text(Util.listAsString(list: ingredients))
                     .frame(width: 184)
                     .multilineTextAlignment(.center)
                     .foregroundColor(LimitChefColors.accents)

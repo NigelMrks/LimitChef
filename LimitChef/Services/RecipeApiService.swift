@@ -80,6 +80,64 @@ class RecipeApiService: ObservableObject {
         task.resume()
     }
     
+    func fetchRecipesByCategory(category: String, completion : @escaping ([Recipe]) -> Void) {
+        //MARK: SCHRITT 1: URL DEFINIEREN
+        let urlExt = "filter.php?c=\(category)"
+        guard let url = URL(string: "\(baseUrl)\(apiKey)\(urlExt)") else {
+            print("Error forming URL")
+            return
+        }
+        //MARK: SCHRITT 2:  URL SESSION & DATA TASK ANLEGEN
+        let task = URLSession.shared.dataTask(with: url) {  data, resCode, error in
+            print(resCode)
+            guard let data = data , error == nil else{
+                print(error as Any)
+                return
+            }
+            //MARK: SCHRITT 3: DATEN DECODEN
+            do{
+                let recipeResponse = try JSONDecoder().decode(RecipeResponse.self, from: data)
+                DispatchQueue.main.async {
+                    self.recipes = recipeResponse.meals
+                    completion(recipeResponse.meals)
+                }
+            }catch{
+                print(error)
+            }
+        }
+        //MARK: SCHRITT 4: API CALL STARTEN
+        task.resume()
+    }
+    
+    func fetchRecipeByIngredient(ingredient: String, completion : @escaping ([Recipe]) -> Void) {
+        //MARK: SCHRITT 1: URL DEFINIEREN
+        let urlExt = "filter.php?i=\(ingredient)"
+        guard let url = URL(string: "\(baseUrl)\(apiKey)\(urlExt)") else {
+            print("Error forming URL")
+            return
+        }
+        //MARK: SCHRITT 2:  URL SESSION & DATA TASK ANLEGEN
+        let task = URLSession.shared.dataTask(with: url) {  data, resCode, error in
+            print(resCode)
+            guard let data = data , error == nil else{
+                print(error as Any)
+                return
+            }
+            //MARK: SCHRITT 3: DATEN DECODEN
+            do{
+                let recipeResponse = try JSONDecoder().decode(RecipeResponse.self, from: data)
+                DispatchQueue.main.async {
+                    self.recipes = recipeResponse.meals
+                    completion(recipeResponse.meals)
+                }
+            }catch{
+                print(error)
+            }
+        }
+        //MARK: SCHRITT 4: API CALL STARTEN
+        task.resume()
+    }
+    
     func getCategories(completion : @escaping ([Category]) -> Void){
         var categories = [Category]()
         //MARK: SCHRITT 1: URL DEFINIEREN

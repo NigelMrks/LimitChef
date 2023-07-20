@@ -9,6 +9,7 @@ import SwiftUI
 
 struct IngredientsScreen: View {
     @StateObject var ingredientsViewModel = IngredientsViewModel()
+    @AppStorage(AppStorageKeys.VARIANCE) var varianceSlider: Double = 0.0
     
     var body: some View {
         VStack {
@@ -52,8 +53,6 @@ struct IngredientsScreen: View {
                     Text("Ingredients")
                         .bold()
                         .listRowBackground(LimitChefColors.primary)
-                }
-                Section {
                     ForEach($ingredientsViewModel.ingredients) { $ingredient in
                         HStack {
                             Text(ingredient.name ?? "error")
@@ -67,9 +66,30 @@ struct IngredientsScreen: View {
                     Text("Search")
                         .bold()
                         .listRowBackground(LimitChefColors.primary)
-                }
-                Section {
-                    
+                    HStack{
+                        Text("Ingredient Variance")
+                            .foregroundColor(LimitChefColors.accents)
+                        Spacer()
+                        Button("HELP") {
+                            
+                        }
+                        .foregroundColor(LimitChefColors.primary)
+                    }
+                    .listRowBackground(LimitChefColors.secondary)
+                    .padding(.horizontal, -16)
+                    HStack {
+                        Text("\(Int(varianceSlider))")
+                            .foregroundColor(LimitChefColors.accents)
+                        Slider(value: $varianceSlider, in: 0...10, step: 1)
+                            .accentColor(LimitChefColors.secondary)
+                            .listRowBackground(LimitChefColors.primary)
+                        Button("SEARCH") {
+                            
+                        }
+                        .bold()
+                        .tint(LimitChefColors.secondary)
+                    }
+                    .listRowBackground(LimitChefColors.primary)
                 }
             }
             .background(LimitChefColors.secondary)
