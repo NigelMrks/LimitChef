@@ -11,12 +11,19 @@ struct RecipeSearch: View {
     @StateObject var searchViewModel: SearchViewModel
     
     var body: some View {
-        VStack {
-            HeaderView(headerText: "Search Recipes")
-            List {
-                ForEach(searchViewModel.recipes, id: \.self) { recipe in
-                    ListThumbnailMedium(url: recipe.strMealThumb, name: recipe.strMeal, ingredients: Util.getIngredientsAsList(recipe: recipe))
+        ZStack {
+            LimitChefColors.secondary
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                HeaderView(headerText: "Search Recipes")
+                List {
+                    ForEach(searchViewModel.recipes, id: \.self) { recipe in
+                        ListThumbnailMedium(url: recipe.strMealThumb, name: recipe.strMeal, ingredients: Util.getIngredientsAsList(recipe: recipe))
+                    }
+                    .listRowBackground(LimitChefColors.primary)
                 }
+                .background(LimitChefColors.secondary)
+                .scrollContentBackground(.hidden)
             }
         }
     }

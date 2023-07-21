@@ -10,6 +10,7 @@ import SwiftUI
 struct IngredientsScreen: View {
     @StateObject var ingredientsViewModel = IngredientsViewModel()
     @AppStorage(AppStorageKeys.VARIANCE) var varianceSlider: Double = 0.0
+    @State var help: Bool = false
     
     var body: some View {
         VStack {
@@ -50,7 +51,7 @@ struct IngredientsScreen: View {
             }
             List {
                 Section {
-                    Text("Ingredients")
+                    Text("Stocked Ingredients")
                         .bold()
                         .listRowBackground(LimitChefColors.primary)
                     ForEach($ingredientsViewModel.ingredients) { $ingredient in
@@ -70,13 +71,18 @@ struct IngredientsScreen: View {
                         Text("Ingredient Variance")
                             .foregroundColor(LimitChefColors.accents)
                         Spacer()
-                        Button("HELP") {
-                            
+                        Button(help ? "CLOSE":"HELP") {
+                            help.toggle()
                         }
                         .foregroundColor(LimitChefColors.primary)
                     }
                     .listRowBackground(LimitChefColors.secondary)
                     .padding(.horizontal, -16)
+                    if (help) {
+                        Text("With the Variance setting you can set how many ingredients recipes are allowed to contain that you currently have not stocked.")
+                            .foregroundColor(LimitChefColors.accents)
+                            .listRowBackground(LimitChefColors.primary)
+                    }
                     HStack {
                         Text("\(Int(varianceSlider))")
                             .foregroundColor(LimitChefColors.accents)

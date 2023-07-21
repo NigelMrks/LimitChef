@@ -69,7 +69,7 @@ class CRUDService: ObservableObject {
     saveData()
     getFavorites()
   }
-  func deleteFavorite(indexSet: IndexSet){
+  func deleteFavorite(at indexSet: IndexSet){
     guard let index = indexSet.first else {
       print("Missing index.")
       return
@@ -84,6 +84,7 @@ class CRUDService: ObservableObject {
       print("Failed to delete & update Favorites: \(error.localizedDescription)")
     }
   }
+    
   func deleteIngredient(at indexSet: IndexSet){
     self.ingredients = getIngredients()
     guard let index = indexSet.first else {
@@ -99,6 +100,18 @@ class CRUDService: ObservableObject {
       print("Failed to delete & update Ingredients: \(error.localizedDescription)")
     }
   }
+    
+    func deleteFavoriteById(id: String) {
+        var item = favorites.first() { $0.id == id }
+        container.viewContext.delete(item!)
+        do {
+            try container.viewContext.save()
+            self.objectWillChange.send()
+            print("Deleted Item")
+        } catch {
+            print("Failed to delete Favorite: \(error.localizedDescription)")
+        }
+    }
 }
 
 

@@ -17,14 +17,14 @@ struct ListThumbnailMedium: View {
             { image in image.resizable() } placeholder: { LimitChefColors.accents } .frame(width: 192, height: 192) .clipShape(RoundedRectangle(cornerRadius: 15))
             VStack {
                 Text(name)
-                    .frame(width: 184)
+                    .frame(width: 150)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .foregroundColor(LimitChefColors.accents)
-                Text(Util.listAsString(list: ingredients))
-                    .frame(width: 184)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(LimitChefColors.accents)
+                //Text(Util.listAsString(list: ingredients))
+                //    .frame(width: 184)
+                //    .multilineTextAlignment(.center)
+                //    .foregroundColor(LimitChefColors.accents)
             }
             .frame(height: 192)
         }

@@ -22,9 +22,18 @@ struct RecipeDetailView: View {
                     RoundedRectangle(cornerRadius: 15)
                         .frame(width: 300, height: 50)
                         .foregroundColor(LimitChefColors.primary)
-                    Text(detailViewModel.recipe.strMeal)
-                        .foregroundColor(LimitChefColors.accents)
-                        .fontWeight(.bold)
+                    HStack {
+                        Text(detailViewModel.recipe.strMeal)
+                            .foregroundColor(LimitChefColors.accents)
+                            .fontWeight(.bold)
+                        Button {
+                            detailViewModel.toggleFavorite()
+                        } label: {
+                            Image(systemName: detailViewModel.isFavorite ? "heart.fill" : "heart")
+                                .font(.system(size: 32))
+                                .tint(.red)
+                        }
+                    }
                 }
             }.edgesIgnoringSafeArea(.top)
             ScrollView(.horizontal) {
