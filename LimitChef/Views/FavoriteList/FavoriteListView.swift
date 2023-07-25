@@ -25,7 +25,6 @@ struct FavoriteListView: View {
                         .onDelete(perform: favoritesViewModel.crud.deleteFavorite)
                         .listRowBackground(LimitChefColors.primary)
                     }
-                    .background(LimitChefColors.secondary)
                     .scrollContentBackground(.hidden)
                     .navigationDestination(for: Favorite.self) { favorite in
                         RecipeDetailView(recID: favorite.id ?? "error")

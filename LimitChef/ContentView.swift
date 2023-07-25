@@ -8,10 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var vm = MainViewModel()
-    @State var bool = true
+ 
+    
     var body: some View {
-        HomeScreen()
+        TabView {
+            HomeScreen()
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
+            IngredientsScreen()
+                .tabItem {
+                    Label("Ingredients", systemImage: "list.triangle")
+                }
+            FavoriteListView()
+                .tabItem {
+                    Label("Favorites", systemImage: "star.fill")
+                }
+        }
+        .tint(LimitChefColors.accents)
+        .onAppear {
+            UITabBar.appearance().backgroundColor = UIColor(LimitChefColors.primary)
+        }
+        
     }
 }
 
