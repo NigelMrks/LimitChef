@@ -10,20 +10,27 @@ import SwiftUI
 struct FavoriteListView: View {
     @StateObject var favoritesViewModel = FavoritesViewModel()
     var body: some View {
-        ZStack {
-            LimitChefColors.secondary
-                .edgesIgnoringSafeArea(.all)
-            VStack {
-                HeaderView(headerText: "Favorites")
-                List {
-                    ForEach(favoritesViewModel.favorites, id: \.self) { favorite in
-                        ListThumbnailMedium(url: favorite.thumbnail ?? "error", name: favorite.name ?? "error", ingredients: favorite.ingredients ?? [String]())
+        NavigationStack {
+            ZStack {
+                LimitChefColors.secondary
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    HeaderView(headerText: "Favorites")
+                    List {
+                        ForEach(favoritesViewModel.favorites, id: \.self) { favorite in
+                            NavigationLink(value: favorite) {
+                                ListThumbnailMedium(url: favorite.thumbnail ?? "error", name: favorite.name ?? "error", ingredients: favorite.ingredients ?? [String]())
+                            }
+                        }
+                        .onDelete(perform: favoritesViewModel.crud.deleteFavorite)
+                        .listRowBackground(LimitChefColors.primary)
                     }
-                    .onDelete(perform: favoritesViewModel.crud.deleteFavorite)
-                    .listRowBackground(LimitChefColors.primary)
+                    .background(LimitChefColors.secondary)
+                    .scrollContentBackground(.hidden)
+                    .navigationDestination(for: Favorite.self) { favorite in
+                        RecipeDetailView(recID: favorite.id ?? "error")
+                    }
                 }
-                .background(LimitChefColors.secondary)
-                .scrollContentBackground(.hidden)
             }
         }
     }

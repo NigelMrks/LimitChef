@@ -10,7 +10,7 @@ import SwiftUI
 struct RecipeDetailView: View {
     var recID : String
     @ObservedObject var detailViewModel = DetailViewModel()
-    
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         VStack {
             ZStack {
@@ -35,7 +35,11 @@ struct RecipeDetailView: View {
                         }
                     }
                 }
-            }.edgesIgnoringSafeArea(.top)
+            }
+            .edgesIgnoringSafeArea(.top)
+            Button("Back") {
+                dismiss()
+            }
             ScrollView(.horizontal) {
                 HStack {
                     ForEach( Util.getIngredientsAsList(recipe: detailViewModel.recipe), id: \.self) {ingredient in
@@ -52,6 +56,7 @@ struct RecipeDetailView: View {
             print("APPEAR")
             detailViewModel.fetchRecipe(ID: recID)
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
