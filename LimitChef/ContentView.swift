@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
- 
-    
+
     var body: some View {
         TabView {
             HomeScreen()
@@ -25,9 +24,13 @@ struct ContentView: View {
                     Label("Favorites", systemImage: "star.fill")
                 }
         }
-        .tint(LimitChefColors.accents)
+        .tint(.red)
         .onAppear {
-            UITabBar.appearance().backgroundColor = UIColor(LimitChefColors.primary)
+            let tabBarApperance = UITabBarAppearance()
+                tabBarApperance.configureWithOpaqueBackground()
+                tabBarApperance.backgroundColor = UIColor(LimitChefColors.primary)
+                UITabBar.appearance().scrollEdgeAppearance = tabBarApperance
+                UITabBar.appearance().standardAppearance = tabBarApperance
         }
         
     }

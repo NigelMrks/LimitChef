@@ -24,4 +24,7 @@ class IngredientsViewModel: ObservableObject {
     crud.deleteIngredient(at: indexSet)
     self.ingredients = crud.getIngredients()
   }
+    func updateIngredients() {
+        self.ingredients = crud.getIngredients()
+    }
 }

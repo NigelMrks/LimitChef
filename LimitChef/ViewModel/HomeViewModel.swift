@@ -16,6 +16,7 @@ class HomeViewModel: ObservableObject {
     var apiServer = RecipeApiService()
     
     func getRandomRecipes() {
+        randomRecipes = [Recipe]()
         for _ in 1...10 {
             apiServer.fetchRandomRecipe() {response in
                 self.randomRecipes.append(response)

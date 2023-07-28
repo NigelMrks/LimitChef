@@ -50,6 +50,9 @@ struct HomeScreen: View {
                             }
                         }
                         .padding(8)
+                        .onAppear {
+                            ingredientsViewModel.updateIngredients()
+                        }
                     }
                     .navigationDestination(for: Recipe.self) { recipe in
                         RecipeDetailView(recID: recipe.idMeal)
