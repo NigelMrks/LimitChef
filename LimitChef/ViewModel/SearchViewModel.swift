@@ -44,29 +44,34 @@ class SearchViewModel: ObservableObject {
             }
         case .ingredientList:
             if (!self.ingredientList.isEmpty) {
+                var unfilteredRecipes = [Recipe]()
                 ingredientList.forEach { ingredient in
                     apiServer.fetchRecipeByIngredient(ingredient: ingredient.name ?? "error") { response in
-                        self.recipes = response
+                        unfilteredRecipes.append(contentsOf: response)
+                        var unfilterRecipesWithIds = Set<Recipe>()
+                        unfilteredRecipes.forEach { recipe in
+                            self.apiServer.fetchRecipeById(id: recipe.idMeal) { responseWithId in
+                                unfilterRecipesWithIds.insert(responseWithId)
+                                self.recipes = self.filterWithVariance(unfilteredRecipes: unfilterRecipesWithIds)
+                            }
+                        }
                     }
                 }
             }
         }
     }
     
-    func filterWithVariance(unfilteredRecipes: [Recipe]) -> [Recipe] {
+    func filterWithVariance(unfilteredRecipes: Set<Recipe>) -> [Recipe] {
         var variance: Int = Int(UserDefaults.standard.double(forKey: AppStorageKeys.VARIANCE))
         var filteredRecipes = [Recipe]()
         unfilteredRecipes.forEach { recipe in
             var unstocked = 0
             var ingrList = Util.getIngredientsAsList(recipe: recipe)
             ingrList.forEach { ingredient in
-                var isStocked: Bool = false
-                crud.ingredients.forEach { stocked in
-                    if (stocked.name == ingredient) {
-                        isStocked = true
-                    }
-                }
-                if (!isStocked) {
+                if crud.ingredients.contains(where: { $0.name == ingredient }) {
+                    print("Ingredient stocked")
+                } else {
+                    print("Ingredient not stocked")
                     unstocked += 1
                 }
             }

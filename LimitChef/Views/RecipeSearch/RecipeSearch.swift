@@ -9,14 +9,23 @@ import SwiftUI
 
 struct RecipeSearch: View {
     @StateObject var searchViewModel: SearchViewModel
-    
+    @Environment(\.dismiss) var dismiss
     var body: some View {
-        VStack {
+        NavigationStack {
             ZStack {
                 LimitChefColors.secondary
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     HeaderView(headerText: "Search Recipes")
+                    HStack {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Label("Back", systemImage: "chevron.left")
+                        }
+                        .padding(.leading, 32)
+                        Spacer()
+                    }
                     List {
                         ForEach(searchViewModel.recipes, id: \.self) { recipe in
                             NavigationLink(value: recipe) {
@@ -25,14 +34,15 @@ struct RecipeSearch: View {
                         }
                         .listRowBackground(LimitChefColors.primary)
                     }
-                    .background(LimitChefColors.secondary)
                     .scrollContentBackground(.hidden)
                     .navigationDestination(for: Recipe.self) { recipe in
                         RecipeDetailView(recID: recipe.idMeal)
                     }
                 }
             }
+            .navigationBarBackButtonHidden(true)
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
