@@ -31,6 +31,7 @@
 		7E92CE1D2A669CF200427C61 /* AppStorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E92CE1C2A669CF200427C61 /* AppStorageKeys.swift */; };
 		7E92CE1F2A6A7DDA00427C61 /* FavoriteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E92CE1E2A6A7DDA00427C61 /* FavoriteListView.swift */; };
 		7E92CE212A6A7E3800427C61 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E92CE202A6A7E3800427C61 /* FavoritesViewModel.swift */; };
+		7E92CE262A8B593C00427C61 /* LimitChefPräsentation.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 7E92CE252A8B593C00427C61 /* LimitChefPräsentation.pdf */; };
 		7E9F08DE2A443DFE0014B34D /* LimitChefApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F08DD2A443DFE0014B34D /* LimitChefApp.swift */; };
 		7E9F08E02A443DFE0014B34D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F08DF2A443DFE0014B34D /* ContentView.swift */; };
 		7E9F08E22A443DFF0014B34D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E9F08E12A443DFF0014B34D /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		7E92CE1C2A669CF200427C61 /* AppStorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKeys.swift; sourceTree = "<group>"; };
 		7E92CE1E2A6A7DDA00427C61 /* FavoriteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListView.swift; sourceTree = "<group>"; };
 		7E92CE202A6A7E3800427C61 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		7E92CE252A8B593C00427C61 /* LimitChefPräsentation.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "LimitChefPräsentation.pdf"; sourceTree = "<group>"; };
 		7E9F08DA2A443DFE0014B34D /* LimitChef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LimitChef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9F08DD2A443DFE0014B34D /* LimitChefApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitChefApp.swift; sourceTree = "<group>"; };
 		7E9F08DF2A443DFE0014B34D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,14 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		7E92CE242A8B592600427C61 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				7E92CE252A8B593C00427C61 /* LimitChefPräsentation.pdf */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		7E9F08D12A443DFE0014B34D = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 		7E9F08DC2A443DFE0014B34D /* LimitChef */ = {
 			isa = PBXGroup;
 			children = (
+				7E92CE242A8B592600427C61 /* Presentation */,
 				7E92CE072A5810B300427C61 /* Util */,
 				7E92CDF82A55735E00427C61 /* Concepts */,
 				7E9F08EF2A458DBC0014B34D /* Data */,
@@ -323,6 +334,7 @@
 				7E92CE022A55739E00427C61 /* IngredientsScreen.png in Resources */,
 				7E9F08E22A443DFF0014B34D /* Assets.xcassets in Resources */,
 				7E92CE062A55739E00427C61 /* FavoriteList.png in Resources */,
+				7E92CE262A8B593C00427C61 /* LimitChefPräsentation.pdf in Resources */,
 				7E92CE032A55739E00427C61 /* PflichtenHeftModul4NigelMarks.pages in Resources */,
 				7E92CE052A55739E00427C61 /* LimitChefProjectPlan.pdf in Resources */,
 			);

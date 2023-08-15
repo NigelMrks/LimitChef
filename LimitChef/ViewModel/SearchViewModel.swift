@@ -62,11 +62,11 @@ class SearchViewModel: ObservableObject {
     }
     
     func filterWithVariance(unfilteredRecipes: Set<Recipe>) -> [Recipe] {
-        var variance: Int = Int(UserDefaults.standard.double(forKey: AppStorageKeys.VARIANCE))
+        let variance: Int = Int(UserDefaults.standard.double(forKey: AppStorageKeys.VARIANCE))
         var filteredRecipes = [Recipe]()
         unfilteredRecipes.forEach { recipe in
             var unstocked = 0
-            var ingrList = Util.getIngredientsAsList(recipe: recipe)
+            let ingrList = Util.getIngredientsAsList(recipe: recipe)
             ingrList.forEach { ingredient in
                 if crud.ingredients.contains(where: { $0.name == ingredient }) {
                     print("Ingredient stocked")
